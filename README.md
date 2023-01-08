@@ -21,7 +21,7 @@ optimized, unlocking your true productive potential!
 ![calendar sketch](https://github.com/TheGreengo/startup/blob/main/calendar_sketch.jpg?raw=true)
 
 ### Notes (shown below)
-- Notes can be created for different tag groups for tasks or groups on their own, i.e if you have a chemistry class a "Chem 101" tag could be used so that you can view just the notes that you've taken for chemistry
-- Notes can be assigned to individual tasks to describe how the task should be completed or other important details
-- Notes' page allows user to filter and search through existing notes
+- notes can be created for different task tag groups or tag groups of their own (i.e if you have a chemistry class a "Chem 101" tag could be used so that you can view just the notes that you've taken for chemistry)
+- notes can be assigned to individual tasks to describe how the task should be completed or other important details
+- notes' page allows user to filter and search through existing notes
 ![notes sketch](https://github.com/TheGreengo/startup/blob/main/note_sketch.jpg?raw=true)
