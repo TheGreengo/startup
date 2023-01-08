@@ -18,7 +18,7 @@ optimized, unlocking your true productive potential!
 ### Calendar (shown below)
 - gives users an overview of which tasks are due when
 - allows for easy moving/rescheduling tasks
-![calendar sketch](https://github.com/TheGreengo/startup/blob/main/calendar_sketch.jpg?raw=true)
+![calendar sketch](https://github.com/TheGreengo/startup/blob/main/calendar_sketch.jpeg)
 
 ### Notes (shown below)
 - notes can be created for different task tag groups or tag groups of their own (i.e if you have a chemistry class a "Chem 101" tag could be used so that you can view just the notes that you've taken for chemistry)
