@@ -8,7 +8,7 @@ the web development 260 class at BYU.
 ## notes from first assignment
 It was nice getting the opportunity to see how to navigate the merge conflict tools in VS code.
 
-#Elevator Pitch: GetOrganized
+# Elevator Pitch: GetOrganized
 Have you ever wanted a simple, comprehensive portal for any productivity related utilities? GetOrganized
 will enable you to create a full todo-list, organize these tasks on an interactive calendar, and add and 
 view notes related to these tasks all in one wholistic software. In the application, you will be able to 
