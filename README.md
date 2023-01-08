@@ -2,22 +2,22 @@
 Startup App Project for CS 260
 
 # Elevator Pitch: GetOrganized
-Have you ever wanted a simple, comprehensive portal for any productivity related utilities? GetOrganized
+Have you ever wanted a simple, comprehensive portal for any and all productivity related utilities? GetOrganized
 will enable you to create a full todo-list, organize these tasks on an interactive calendar, and add and 
-view notes related to these tasks all in one wholistic software. In the application, you will be able to 
-switch between three straightforward screens to view these different features and get organized and 
+view notes related to these tasks all in one wholistic application. In GetOrganized, you will be able to 
+switch between three straightforward screens to view these different features, enabling you to get organized and 
 optimized, unlocking your true productive potential!
 
 # Features:
 ### TodoList (shown below)
-- allows users to create, complete, edit, and delete tasks
-- tasks will have a date on which they are due, a description, as well as the ability to be grouped by custom tags
-- in the "TodoList" page you can filter which tasks are shown, search by task title, and choose how tasks are sorted
+- allows users to create, complete, edit, view, and delete tasks
+- tasks will have a date on which they are due, a description, and custom tags that they can be grouped by
+- in the "TodoList" page you can filter which tag groups are shown, search by task title, and choose how tasks are sorted
 ![todolist sketch](https://github.com/TheGreengo/startup/blob/main/tasks_sketch.jpg?raw=true)
 
 ### Calendar (shown below)
 - gives users an overview of which tasks are due when
-- allows for moving/rescheduling tasks
+- allows for easy moving/rescheduling tasks
 ![calendar sketch](https://github.com/TheGreengo/startup/blob/main/calendar_sketch.jpg?raw=true)
 
 ### Notes (shown below)
