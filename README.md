@@ -20,15 +20,15 @@ optimized, unlocking your true productive potential!
 - allows users to create, complete, edit, and delete tasks
 - tasks will have a date on which they are due, a description, as well as the ability to be grouped by custom tags
 - in the "TodoList" page you can filter which tasks are shown, search by task title, and choose how tasks are sorted
-![alt text](https://github.com/TheGreengo/startup/blob/main/tasks_sketch.jpg?raw=true)
+![todolist sketch](https://github.com/TheGreengo/startup/blob/main/tasks_sketch.jpg?raw=true)
 
 ### Calendar (shown below)
 - gives users an overview of which tasks are due when
 - allows for moving/rescheduling tasks
-![alt text](https://github.com/TheGreengo/startup/blob/main/calendar_sketch.jpg?raw=true)
+![calendar sketch](https://github.com/TheGreengo/startup/blob/main/calendar_sketch.jpg?raw=true)
 
 ### Notes (shown below)
 - Notes can be created for different tag groups for tasks or groups on their own, i.e if you have a chemistry class a "Chem 101" tag could be used so that you can view just the notes that you've taken for chemistry
 - Notes can be assigned to individual tasks to describe how the task should be completed or other important details
 - Notes' page allows user to filter and search through existing notes
-![alt text](https://github.com/TheGreengo/startup/blob/main/notes_sketch.jpg?raw=true)
+![notes sketch](https://github.com/TheGreengo/startup/blob/main/note_sketch.jpg?raw=true)
