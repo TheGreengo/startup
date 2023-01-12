@@ -30,3 +30,6 @@ optimized, unlocking your true productive potential!
 I.P. Address: 3.136.43.25,
 
 Login command: ssh -i ~/[Key File Path] ubuntu@[I.P. Address]
+
+# URL:
+http://getorganized.click/
