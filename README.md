@@ -27,5 +27,6 @@ optimized, unlocking your true productive potential!
 ![notes sketch](https://github.com/TheGreengo/startup/blob/main/note_sketch.jpg?raw=true)
 
 # AWS Info:
-I.P. Address: 3.136.43.25
-Login command:cssh -i ~/[Key File Path] ubuntu@[I.P. Address]
+I.P. Address: 3.136.43.25,
+
+Login command: ssh -i ~/[Key File Path] ubuntu@[I.P. Address]
