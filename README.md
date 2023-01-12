@@ -25,3 +25,7 @@ optimized, unlocking your true productive potential!
 - notes can be assigned to individual tasks to describe how the task should be completed or other important details
 - notes' page allows user to filter and search through existing notes
 ![notes sketch](https://github.com/TheGreengo/startup/blob/main/note_sketch.jpg?raw=true)
+
+#AWS Info:
+I.P. Address: 3.136.43.25
+Login command:cssh -i ~/[Key File Path] ubuntu@[I.P. Address]
