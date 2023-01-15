@@ -38,3 +38,6 @@ http://getorganized.click/
 - use &#; to include unicode characters in html.
 - From Simon project: make sure the Caddyfiles are configured for each url that is going to be used (i.e. including simon.getorganized, not just getorganized) otherwise the webpage won't load
 - From Simon project: use \<hr \/> at the end of a section in order to get a line dividing topical sections
+'''
+<hr />
+'''
