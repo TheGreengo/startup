@@ -34,4 +34,6 @@ Login command: ssh -i ~/[Key File Path] ubuntu@[I.P. Address]
 # URL:
 http://getorganized.click/
 
-Note to self: use &#; to include unicode characters in html.
+# Notes:
+- use &#; to include unicode characters in html.
+- From Simon project: make sure the Caddyfiles are configured for each url that is going to be used (i.e. including simon.getorganized, not just getorganized) otherwise the webpage won't load
