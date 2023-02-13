@@ -1,0 +1,55 @@
+body{
+    background-color: #f8fafc;
+    margin: 0px;
+    padding: 0px;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+header{
+   background-color: grey;
+}
+
+.logo {
+    color: green;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+a{
+    text-decoration: none;
+}
+.cal-btn {
+    background-color: #a3e635;
+    border: solid #73b70d 2px;
+}
+
+.todo-btn {
+    background-color: #34d399;
+    border: solid #0ba773 2px;
+}
+
+.notes-btn {
+    background-color: #38bdf8;
+    border: solid #0591d2 2px;
+}
+
+.btn{
+    padding: 4px;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+.btn-lnk{
+    color: white;
+}
+
+menu{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
