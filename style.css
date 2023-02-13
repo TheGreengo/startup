@@ -2,6 +2,7 @@ body{
     background-color: #f8fafc;
     margin: 0px;
     padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 nav{
@@ -10,14 +11,20 @@ nav{
     justify-content: space-between;
 }
 
+menu{
+    margin:0px;
+}
+
 header{
-   background-color: grey;
+   background-color: #cbd5e1;
 }
 
 .logo {
     color: green;
     font-size: 24px;
     text-decoration: none;
+    vertical-align: center;
+    margin: 10px;
 }
 
 a{
@@ -29,27 +36,50 @@ a{
 }
 
 .todo-btn {
-    background-color: #34d399;
-    border: solid #0ba773 2px;
+    background-color: #38bdf8;
+    border: solid #0591d2 2px;
 }
 
 .notes-btn {
-    background-color: #38bdf8;
-    border: solid #0591d2 2px;
+    background-color: #c084fc;
+    border: solid #a855f7 2px;
 }
 
 .btn{
     padding: 4px;
     font-size: 14px;
     border-radius: 10px;
+    margin: 10px;
 }
 
 .btn-lnk{
-    color: white;
+    color: #fafaf9;
+    font-size: 16px;
 }
 
 menu{
     width: 50%;
     display: flex;
     justify-content: space-around;
+}
+
+.calendar{
+    display: flex;
+    justify-content: center;
+}
+
+.cal-hold{
+    border: solid #73b70d 2px;
+    width: 80%;
+    max-width: 960px;
+    display: grid;
+    grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
+    column-gap: 0.33334%;
+    row-gap: 2.5px;
+    padding: 2.5px;
+}
+
+.day{
+    background-color: #a3e635;
+    height: 15px;
 }
