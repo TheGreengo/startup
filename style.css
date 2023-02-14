@@ -50,6 +50,7 @@ a{
     font-size: 14px;
     border-radius: 10px;
     margin: 10px;
+    box-shadow: 1.5px 1.5px 5px grey;
 }
 
 .btn-lnk{
