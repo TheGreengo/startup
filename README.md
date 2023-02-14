@@ -41,5 +41,5 @@ http://getorganized.click/
 - From Simon CSS project: one thing that I learned from this assignment was how to use bootstrap classes to stylize the page, in particular the nav html section. It's really convenient having the building blocks for a good menu that easy to implement.
 - From destructuring: syntax of destructuring 
 ```javascript
-const [a,b] = array
+const [a,b] = array;
 ``` 
