@@ -71,16 +71,25 @@ menu{
 
 .cal-hold{
     border: solid #73b70d 2px;
-    width: 80%;
-    max-width: 960px;
+    width: 90%;
+    max-width: 1080px;
     display: grid;
     grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
     column-gap: 0.33334%;
     row-gap: 2.5px;
     padding: 2.5px;
 }
-
+.weekday{
+    text-align: center;
+}
 .day{
-    background-color: #a3e635;
-    height: 15px;
+    background-color: #f0f0f0;
+    height: 60px;
+    border: solid #a3e635 1px;
+    border-radius: 2px;
+}
+
+.cont{
+    padding-left: 20px;
+    padding-right: 20px;
 }
