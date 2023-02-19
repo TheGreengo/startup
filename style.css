@@ -74,19 +74,17 @@ menu{
     width: 90%;
     max-width: 1080px;
     display: grid;
-    grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
-    column-gap: 0.33334%;
-    row-gap: 2.5px;
-    padding: 2.5px;
+    grid-template-columns: 14.2857% 14.2857% 14.2857% 14.2857% 14.2857% 14.2857% 14.2857%;
 }
 .weekday{
     text-align: center;
 }
 .day{
-    background-color: #f0f0f0;
-    height: 60px;
-    border: solid #a3e635 1px;
+    background-color: white;
+    height: 100px;
+    border: solid #91d328 2px;
     border-radius: 2px;
+    margin: 2.5px;
 }
 
 .cont{
@@ -96,4 +94,23 @@ menu{
 
 .desc{
     text-align: center;
+}
+
+.month{
+    grid-column-start: 1;
+    grid-column-end: 8;
+    border-bottom: solid #73b70d 2px;
+    text-align: center;
+    font-size: 48px;
+    color:#94a3b8;
+    padding-bottom: 7.5px;
+    background-color: #d9f99d;
+}
+
+.row-start{
+    margin-left: 5px;
+}
+
+.row-end{
+    margin-right: 5px;
 }
