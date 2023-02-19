@@ -73,8 +73,14 @@ menu{
     border: solid #73b70d 2px;
     width: 90%;
     max-width: 1080px;
+}
+.week {
     display: grid;
-    grid-template-columns: 14.2857% 14.2857% 14.2857% 14.2857% 14.2857% 14.2857% 14.2857%;
+    grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
+    column-gap: 0.333%;
+    row-gap: 2.5px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 .weekday{
     text-align: center;
