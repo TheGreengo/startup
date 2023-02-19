@@ -166,3 +166,36 @@ menu{
 .w-word{
     color:white;
 }
+
+.todo-out{
+    display: flex;
+    justify-content: center;
+}
+
+.todo-in{
+    background-color: #38bdf8;
+    border: solid #0591d2 2px;
+    width: 90%;
+    max-width: 1080px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.todo-ctrl{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: solid #0591d2 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.add-btn{
+    text-align: center;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left:2.5px;
+    padding-right:2.5px;
+    border-radius: 100%;
+}
