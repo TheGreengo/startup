@@ -46,3 +46,4 @@ const [a,b] = array;
 - From startup HTML & CSS:
   - When using border-radius, you need to add a border radius to any divs within the containing div or the corners can poke over the border
   - To add a sub-point in .md files, do two extra spaces then a line.
+  - Footer can be added using absolute positioning and content/page wrappers for the non-footer content
