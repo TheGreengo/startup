@@ -43,3 +43,5 @@ http://getorganized.click/
 ```javascript
 const [a,b] = array;
 ``` 
+- From startup HTML & CSS:
+- - When using border-radius, you need to add a border radius to any divs within the containing div or the corners can poke over the border
