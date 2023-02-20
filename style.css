@@ -19,6 +19,22 @@ header{
    background-color: #cbd5e1;
 }
 
+footer{
+  position: absolute;
+  bottom: 0;
+  width: 98%;
+  height: 1.5rem;  
+  text-align: center;
+  background-color: #cbd5e1;
+  vertical-align: middle;
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 1%;
+  padding-right: 1%;
+}
+
 .logo {
     color: green;
     font-size: 24px;
@@ -67,6 +83,7 @@ menu{
 .calendar{
     display: flex;
     justify-content: center;
+    overflow-y: auto;
 }
 
 .cal-hold{
@@ -393,3 +410,15 @@ menu{
     color: black;
 }
 
+.cont-wrap{
+    padding-bottom: 2.5rem;
+}
+
+.page-wrap{
+    position: relative;
+    min-height: 100vh;
+}
+
+.repo-link{
+    color: #199045;
+}
