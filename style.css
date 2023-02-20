@@ -108,6 +108,7 @@ menu{
 .desc{
     margin-top: 15px;
     text-align: center;
+    margin-bottom: 15px;
 }
 
 .month{
@@ -116,7 +117,7 @@ menu{
     border-bottom: solid #73b70d 2px;
     text-align: center;
     font-size: 48px;
-    color:#e2e8f0;
+    color:white;
     padding-bottom: 7.5px;
     background-color: #a3e635;
 }
@@ -316,7 +317,7 @@ menu{
     border-bottom: solid #a855f7 2px;
     text-align: center;
     font-size: 48px;
-    color:#d1d5db;
+    color:white;
     padding-bottom: 7.5px;
     background-color: #c084fc;
     border-top-left-radius: 5px;
@@ -339,7 +340,7 @@ menu{
     border: solid #a855f7 2px;
     padding: 2.5px;
     border-radius: 10px;
-    color: purple;
+    color: white;
 }
 
 .notes-in{
@@ -364,5 +365,31 @@ menu{
 }
 
 .note{
-    
+    display: flex;
+    flex-direction: column;
+    border: solid black 2px;
+    margin: 5px;
 }
+
+.note-head{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #e2e8f0;
+    color: black;
+    padding: 4px;
+}
+
+.note-body{
+    color: black;
+    padding: 2px;
+}
+
+.note-btn{
+    background-color: #e2e8f0;
+    border: solid #9ca3af 2px;
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+}
+
