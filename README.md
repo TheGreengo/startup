@@ -47,3 +47,6 @@ const [a,b] = array;
   - When using border-radius, you need to add a border radius to any divs within the containing div or the corners can poke over the border
   - To add a sub-point in .md files, do two extra spaces then a line.
   - Footer can be added using absolute positioning and content/page wrappers for the non-footer content
+- From simon JS:
+  - localStorage is a great way to keep track of things when not using an actual database
+  - strings with replaced variables can be used to create CSS settings in the JS file
