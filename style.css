@@ -480,3 +480,8 @@ menu{
 .week-weekday{
     border-bottom:solid 1px #94a3b8;
 }
+
+#cal{
+    max-height:655px;
+    overflow-y: auto;
+}
