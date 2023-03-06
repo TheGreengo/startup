@@ -16,16 +16,27 @@ function getOffSet(){
 function generateCalendar() {
     if (type === "Day") {
         // get calendar holder
+        const cal = document.querySelector('#cal');
+        cal.innerHTML = "";
         // create day
+
         // populate events
 
     } else if (type === "Week") {
         // get calendar holder
+        const cal = document.querySelector('#cal');
+        cal.innerHTML = "";
+
         // create week
+        const WeekCal = document.createElement('div');
+        WeekCal.className = "week-cal";
+
+        cal.appendChild(WeekCal);
         // populate events
 
     } else {
         const cal = document.querySelector('#cal');
+        cal.innerHTML = "";
         const Month = document.createElement('div');
         Month.className = "month";
         thing = new Date();
@@ -69,10 +80,6 @@ function generateCalendar() {
 function setType(newType){
     type = newType;
     generateCalendar();
-}
-
-function logDays() {
-    console.log(type);
 }
 /*
 Calendar:

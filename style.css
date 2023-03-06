@@ -92,6 +92,7 @@ menu{
     max-width: 1080px;
     border-radius: 5px;
 }
+
 .weeks {
     display: grid;
     grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
@@ -100,8 +101,8 @@ menu{
     padding-left: 3px;
     padding-right: 3px;
     margin-bottom: 5px;
-    
 }
+
 .weekday{
     text-align: center;
     padding-top: 2.5px;
@@ -422,4 +423,33 @@ menu{
 
 .repo-link{
     color: #199045;
+}
+
+.week-day{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(24, 50px);
+}
+
+.hours {
+    color: #e2e8f0;
+    font-size: 12pt;
+}
+
+.week-cal{
+    display: grid;
+    grid-template-columns: 5% 13.4% 13.4% 13.4% 13.4% 13.4% 13.4% 13.4%;
+    column-gap: 0.2%;
+    row-gap: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-bottom: 5px;
+}
+
+.hour {
+    border-bottom:#e2e8f0;
+}
+
+.lastHour{
+
 }
