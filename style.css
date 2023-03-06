@@ -428,28 +428,55 @@ menu{
 .week-day{
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: repeat(24, 50px);
+    grid-template-rows: repeat(15, 50px);
+}
+
+.day-day{
+    grid-column-start: 2;
+    grid-column-end: 9;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(15, 50px);
+}
+
+.hour-col{
+    display: flex;
+    flex-direction: column;
 }
 
 .hours {
-    color: #e2e8f0;
+    color: #94a3b8;
     font-size: 12pt;
+    padding-top: 15px;
+    text-align: center;
 }
 
 .week-cal{
     display: grid;
-    grid-template-columns: 5% 13.4% 13.4% 13.4% 13.4% 13.4% 13.4% 13.4%;
-    column-gap: 0.2%;
-    row-gap: 5px;
-    padding-left: 3px;
-    padding-right: 3px;
-    margin-bottom: 5px;
+    grid-template-columns: 5.5% 13.5% 13.5% 13.5% 13.5% 13.5% 13.5% 13.5%;
+
 }
 
 .hour {
-    border-bottom:#e2e8f0;
+    border-bottom:solid 1px #94a3b8;
+    border-left:solid 1px #94a3b8;
 }
 
-.lastHour{
+.last-hour{
+    border-left:solid 1px #94a3b8;
+}
 
+.week-head{
+    grid-column-start: 1;
+    grid-column-end: 9;
+    border-bottom: solid #73b70d 2px;
+    text-align: center;
+    font-size: 48px;
+    color:white;
+    padding-bottom: 7.5px;
+    background-color: #a3e635;
+}
+
+.week-weekday{
+    border-bottom:solid 1px #94a3b8;
 }
