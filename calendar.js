@@ -1,4 +1,7 @@
 let calDB = [];
+let type = "Month";
+let months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
 function getCalDays() {
     thing = new Date();
@@ -7,13 +10,69 @@ function getCalDays() {
 
 function getOffSet(){
     thing = new Date();
-    thang = new Date(thing.getFullYear(), thing.getMonth()-1,1);
-    console.log(thang);
-    return thang.getDay();
+    return new Date(thing.getFullYear(), thing.getMonth()-1,1).getDay();
+}
+
+function generateCalendar() {
+    if (type === "Day") {
+        // get calendar holder
+        // create day
+        // populate events
+
+    } else if (type === "Week") {
+        // get calendar holder
+        // create week
+        // populate events
+
+    } else {
+        const cal = document.querySelector('#cal');
+        const Month = document.createElement('div');
+        Month.className = "month";
+        thing = new Date();
+        Month.textContent = months[thing.getMonth()];
+        cal.appendChild(Month);
+
+        const Week = document.createElement('div');
+        Week.className = "weeks";
+        for (let i = 0; i < 7; i++) {
+            const Weekday = document.createElement('div');
+            Weekday.className = "weekday";
+            Weekday.innerText = days[i];
+            Week.appendChild(Weekday);
+        }
+        cal.appendChild(Week);
+
+        let numDays = getCalDays();
+        let off = getOffSet() - 1;
+
+        const Weeks = document.createElement('div');
+        Weeks.className = "weeks";
+
+        if (off !== -1) {
+            for (let i = 0; i < off; i++) {
+                const Day = document.createElement('div');
+                Weeks.appendChild(Day);
+            }
+        }
+
+        for (let i = 0; i < numDays; i++) {
+            const Day = document.createElement('div');
+            Day.className = "day";
+            Day.innerText = (i+1);
+            Weeks.appendChild(Day);
+        }
+        cal.appendChild(Weeks);
+        // populate events
+    }
+}
+
+function setType(newType){
+    type = newType;
+    generateCalendar();
 }
 
 function logDays() {
-    console.log(getOffSet());
+    console.log(type);
 }
 /*
 Calendar:
@@ -24,6 +83,9 @@ Calendar:
    - type (string array)
    - title (string)
    - attached notes (number array)
+   - color (string)
  - get a function to create the daily/weekly/monthly calendars
    depending on what has been selected
 */
+
+generateCalendar();
