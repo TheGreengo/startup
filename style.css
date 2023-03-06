@@ -92,10 +92,11 @@ menu{
     max-width: 1080px;
     border-radius: 5px;
 }
-.week {
+.weeks {
     display: grid;
     grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
     column-gap: 0.333%;
+    row-gap: 5px;
     padding-left: 3px;
     padding-right: 3px;
     margin-bottom: 5px;
