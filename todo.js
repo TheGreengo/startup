@@ -69,6 +69,45 @@ function createTodos() {
   }
 }
 
+function getDialog() {
+  const holder = document.querySelector('.overlay');
+
+  holder.style.display = "block";
+
+  const dialog = document.createElement('div');
+  dialog.className = "dialog-todo";
+  dialog.innerText = "";
+
+  //now to create the dialog
+  // first a header
+  const header = document.createElement('div');
+  header.className = "todo-tl";
+  header.innerText = "New To-Do";
+  dialog.appendChild(header);
+  // then a form?
+  const form = document.createElement('form');
+  header.className = "todo-form";
+  header.innerText = "";
+
+  // then a date selector
+  const dateInput = document.createElement('input');
+
+  form.appendChild(dateInput);
+  // then a title input
+  const titleInput = document.createElement('input');
+
+  form.appendChild(dateInput);
+  // then a type input
+  const typeInput = document.createElement('input');
+
+  form.appendChild(dateInput);
+  // then a cancel and submit button
+
+  dialog.appendChild(form);
+
+  holder.appendChild(dialog);
+}
+
 /*
 Todo:
  - add note (on button click) [dialog]
