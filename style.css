@@ -488,14 +488,12 @@ menu{
 
 .dialog-todo {
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 50%;
-    color: white;
     border: solid black 3px;
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
     border: solid #0591d2 2px;
-    width: 80%;
     max-width: 1080px;
     border-radius: 5px;
     display: flex;
@@ -515,4 +513,32 @@ menu{
     background-color: rgba(123, 123, 123, 0.125);
     z-index: 2;
     cursor: pointer;
+}
+
+.todo-dialog-sec{
+    padding: 10px;
+    color: #0591d2;
+    text-align: center;
+}
+
+.cancel-button{
+    background-color: #e34e4e;
+    border: solid #b31212 2px;
+    color: white;
+    border-radius: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 4px;
+    font-size: 14px;
+}
+
+.create-button{
+    background-color: #a3e635;
+    border: solid #73b70d 2px;
+    color: white;
+    border-radius: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 4px;
+    font-size: 14px;
 }

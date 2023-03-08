@@ -86,22 +86,62 @@ function getDialog() {
   dialog.appendChild(header);
   // then a form?
   const form = document.createElement('form');
-  header.className = "todo-form";
-  header.innerText = "";
+  form.className = "todo-form";
+  form.innerText = "";
 
   // then a date selector
+  const dateSec = document.createElement('div');
+  dateSec.className = "todo-dialog-sec";
+  const dateLabel = document.createElement('label');
   const dateInput = document.createElement('input');
 
-  form.appendChild(dateInput);
+  dateInput.type = "date";
+  dateLabel.innerText = "Select a due date for your task: ";
+
+  dateSec.appendChild(dateLabel);
+  dateSec.appendChild(dateInput);
+  form.appendChild(dateSec);
   // then a title input
+  const titleSec = document.createElement('div');
+  titleSec.className = "todo-dialog-sec";
+  const titleLabel = document.createElement('label');
   const titleInput = document.createElement('input');
 
-  form.appendChild(dateInput);
+  titleInput.type = "text";
+  titleLabel.innerText = "Enter a description for your task: ";
+
+  titleSec.appendChild(titleLabel);
+  titleSec.appendChild(titleInput);
+  form.appendChild(titleSec);
   // then a type input
+  const typeSec = document.createElement('div');
+  typeSec.className = "todo-dialog-sec";
+  const typeLabel = document.createElement('label');
   const typeInput = document.createElement('input');
 
-  form.appendChild(dateInput);
+  typeInput.type = "text";
+  typeLabel.innerText = "Enter a type for your task: ";
+
+  typeSec.appendChild(typeLabel);
+  typeSec.appendChild(typeInput);
+  form.appendChild(typeSec);
   // then a cancel and submit button
+
+  const butSec = document.createElement('div');
+  butSec.className = "todo-dialog-sec";
+  const cancelBtn = document.createElement('button');
+  const submitBtn = document.createElement('button');
+
+  cancelBtn.innerText = "Cancel";
+  cancelBtn.onclick = "cancelTask()";
+  cancelBtn.className = "cancel-button";
+  submitBtn.innerText = "Create";
+  submitBtn.onclick = "createTask()";
+  submitBtn.className = "create-button";
+
+  butSec.appendChild(cancelBtn);
+  butSec.appendChild(submitBtn);
+  form.appendChild(butSec);
 
   dialog.appendChild(form);
 
