@@ -7,7 +7,7 @@ let todoDB = [
   },
 ];
 
-let currId = 4;
+let currId = 2;
 
 function createTodos() {
   const holder = document.querySelector('#display');
@@ -165,19 +165,5 @@ function deleteButton(id) {
   todoDB = todoDB.filter((entry) => entry.id !== id);
   createTodos();
 }
-/*
-Todo:
- - add note (on button click) [dialog]
- - delete note (on button click)
- - edit note (on button click) [dialog]
- - todo database (list of todos)
- - todo type 
-   - Description (string)
-   - Due Date (date)
-   - Type (string array)
- - filter (on select)
- - search (on keystroke)
- - fix sort options
- - sort
-*/
+
 createTodos();

@@ -1,4 +1,13 @@
-let notesDB = [];
+let notesDB = [
+  {
+    title: "Example Note",
+    tag: "Type 1",
+    date: new Date(3-16-2023),
+    id: 1
+  }
+];
+
+let currId = 2;
 
 /*
 Notes:
