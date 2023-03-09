@@ -1,26 +1,21 @@
 let todoDB = [
   {
-    description: "Task 1",
+    description: "Example Task",
     dueDate: new Date("3-14-2023"),
-    type: ["important","personal"]
+    type: "Type 1",
+    id: 1
   },
-  {
-    description: "Task 2",
-    dueDate: new Date("3-15-2023"),
-    type: ["important","dull"]
-  },
-  {
-    description: "Task 3",
-    dueDate: new Date("3-16-2023"),
-    type: ["dull","personal"]
-  }
 ];
 
-types = ["important","personal","dull"];
+let currId = 4;
 
 function createTodos() {
   const holder = document.querySelector('#display');
-  holder.inneHTML = "";
+  holder.innerHTML = "";
+
+  if (todoDB.length === 0) {
+    holder.innerHTML = '<h3>No tasks to display</h3>';
+  }
 
   for (let i = 0; i < todoDB.length; i++) {
     const newTask = document.createElement('div');
@@ -29,6 +24,10 @@ function createTodos() {
     const compBtn = document.createElement('button');
     compBtn.textContent = `${String.fromCodePoint(10004)}`;
     compBtn.className = "comp-btn";
+    compBtn.onclick = function() {
+      todoDB = todoDB.filter((entry) => entry.id !== todoDB[i].id);
+      createTodos();
+    };
     newTask.appendChild(compBtn);
 
     const editBtn = document.createElement('button');
@@ -43,14 +42,7 @@ function createTodos() {
     desc.innerText = `Description: ${todoDB[i].description}`;
 
     const typ = document.createElement('div');
-    let thing = "";
-    for (let j = 0; j < todoDB[i].type.length; j++) {
-      thing += todoDB[i].type[j];
-      if (j < todoDB[i].type.length - 1) {
-        thing += ", ";
-      }
-    }
-    typ.innerText = `Type: ${thing}`;
+    typ.innerText = `Type: ${todoDB[i].type}`;
 
     const dt = document.createElement('div');
     dt.innerText = `Date: ${todoDB[i].dueDate.getMonth()+1}-${todoDB[i].dueDate.getDate()}-${todoDB[i].dueDate.getFullYear() - 2000}`;
@@ -63,6 +55,10 @@ function createTodos() {
     const delBtn = document.createElement('button');
     delBtn.textContent = `${String.fromCodePoint(10006)}`;
     delBtn.className = "dlt-btn";
+    delBtn.onclick = function() {
+      todoDB = todoDB.filter((entry) => entry.id !== todoDB[i].id);
+      createTodos();
+    };
     newTask.appendChild(delBtn);
 
     holder.appendChild(newTask);
@@ -85,7 +81,7 @@ function getDialog() {
   header.innerText = "New To-Do";
   dialog.appendChild(header);
   // then a form?
-  const form = document.createElement('form');
+  const form = document.createElement('div');
   form.className = "todo-form";
   form.innerText = "";
 
@@ -96,6 +92,7 @@ function getDialog() {
   const dateInput = document.createElement('input');
 
   dateInput.type = "date";
+  dateInput.id = "dateInput";
   dateLabel.innerText = "Select a due date for your task: ";
 
   dateSec.appendChild(dateLabel);
@@ -106,6 +103,7 @@ function getDialog() {
   titleSec.className = "todo-dialog-sec";
   const titleLabel = document.createElement('label');
   const titleInput = document.createElement('input');
+  titleInput.id = "titleInput";
 
   titleInput.type = "text";
   titleLabel.innerText = "Enter a description for your task: ";
@@ -118,6 +116,7 @@ function getDialog() {
   typeSec.className = "todo-dialog-sec";
   const typeLabel = document.createElement('label');
   const typeInput = document.createElement('input');
+  typeInput.id = "typeInput";
 
   typeInput.type = "text";
   typeLabel.innerText = "Enter a type for your task: ";
@@ -129,18 +128,7 @@ function getDialog() {
 
   const butSec = document.createElement('div');
   butSec.className = "todo-dialog-sec";
-  const cancelBtn = document.createElement('button');
-  const submitBtn = document.createElement('button');
-
-  cancelBtn.innerText = "Cancel";
-  cancelBtn.onclick = "cancelTask()";
-  cancelBtn.className = "cancel-button";
-  submitBtn.innerText = "Create";
-  submitBtn.onclick = "createTask()";
-  submitBtn.className = "create-button";
-
-  butSec.appendChild(cancelBtn);
-  butSec.appendChild(submitBtn);
+  butSec.innerHTML = '<button class="cancel-button" onclick="cancelTask()">Cancel</button> <button class="create-button" onclick="newTodo()">Create</button>';
   form.appendChild(butSec);
 
   dialog.appendChild(form);
@@ -148,6 +136,35 @@ function getDialog() {
   holder.appendChild(dialog);
 }
 
+function newTodo() {
+
+  const type = document.querySelector('#typeInput');
+  const date = document.querySelector('#dateInput');
+  const desc = document.querySelector('#titleInput');
+  console.log(type.value);
+  console.log(date.value);
+  console.log(desc.value);
+  todoDB.push({
+    description: desc.value,
+    dueDate: new Date(date.value),
+    type: type.value,
+    id: currId
+  });
+  currId++;
+  const holder = document.querySelector('.overlay');
+  holder.style.display = "none";
+  createTodos();
+}
+
+function cancelTask() {
+  const holder = document.querySelector('.overlay');
+  holder.style.display = "none";
+}
+
+function deleteButton(id) {
+  todoDB = todoDB.filter((entry) => entry.id !== id);
+  createTodos();
+}
 /*
 Todo:
  - add note (on button click) [dialog]
@@ -163,5 +180,4 @@ Todo:
  - fix sort options
  - sort
 */
-
 createTodos();
