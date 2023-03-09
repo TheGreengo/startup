@@ -339,8 +339,8 @@ menu{
     color:white;
     padding-bottom: 7.5px;
     background-color: #c084fc;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-left-radius: 2.5px;
+    border-top-right-radius: 2.5px;
 }
 
 .notes-add-btn{
@@ -501,6 +501,21 @@ menu{
     flex-direction: column;
 }
 
+.dialog-notes {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    border: solid black 3px;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    border: solid #a855f7 2px;
+    max-width: 1080px;
+    border-radius: 5px;
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+}
+
 .overlay {
     display: none;
     position: absolute;
@@ -518,6 +533,12 @@ menu{
 .todo-dialog-sec{
     padding: 10px;
     color: #0591d2;
+    text-align: center;
+}
+
+.notes-dialog-sec{
+    padding: 10px;
+    color: #a855f7;
     text-align: center;
 }
 
@@ -545,4 +566,9 @@ menu{
 
 h3{
     text-align: center;
+}
+
+#bodInput{
+    height: 100px;
+    width:90%;
 }

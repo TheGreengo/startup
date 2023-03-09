@@ -8,6 +8,7 @@ let todoDB = [
 ];
 
 let currId = 2;
+let iteration = 0;
 
 function createTodos() {
   const holder = document.querySelector('#display');
@@ -92,7 +93,8 @@ function getDialog() {
   const dateInput = document.createElement('input');
 
   dateInput.type = "date";
-  dateInput.id = "dateInput";
+  dateInput.id = `dateInput${iteration}`;
+  dateInput.value = "";
   dateLabel.innerText = "Select a due date for your task: ";
 
   dateSec.appendChild(dateLabel);
@@ -103,9 +105,10 @@ function getDialog() {
   titleSec.className = "todo-dialog-sec";
   const titleLabel = document.createElement('label');
   const titleInput = document.createElement('input');
-  titleInput.id = "titleInput";
+  titleInput.id = `titleInput${iteration}`;
 
   titleInput.type = "text";
+  titleInput.value = "";
   titleLabel.innerText = "Enter a description for your task: ";
 
   titleSec.appendChild(titleLabel);
@@ -116,13 +119,14 @@ function getDialog() {
   typeSec.className = "todo-dialog-sec";
   const typeLabel = document.createElement('label');
   const typeInput = document.createElement('input');
-  typeInput.id = "typeInput";
+  typeInput.id = `typeInput${iteration}`;
 
   typeInput.type = "text";
   typeLabel.innerText = "Enter a type for your task: ";
 
   typeSec.appendChild(typeLabel);
   typeSec.appendChild(typeInput);
+  typeInput.value = "";
   form.appendChild(typeSec);
   // then a cancel and submit button
 
@@ -138,12 +142,9 @@ function getDialog() {
 
 function newTodo() {
 
-  const type = document.querySelector('#typeInput');
-  const date = document.querySelector('#dateInput');
-  const desc = document.querySelector('#titleInput');
-  console.log(type.value);
-  console.log(date.value);
-  console.log(desc.value);
+  const type = document.querySelector(`#typeInput${iteration}`);
+  const date = document.querySelector(`#dateInput${iteration}`);
+  const desc = document.querySelector(`#titleInput${iteration}`);
   todoDB.push({
     description: desc.value,
     dueDate: new Date(date.value),
@@ -159,11 +160,6 @@ function newTodo() {
 function cancelTask() {
   const holder = document.querySelector('.overlay');
   holder.style.display = "none";
-}
-
-function deleteButton(id) {
-  todoDB = todoDB.filter((entry) => entry.id !== id);
-  createTodos();
 }
 
 createTodos();

@@ -12,6 +12,7 @@ let notesDB = [
 ];
 
 let currId = 2;
+let iteration = 0;
 
 function createNotes() {
   const holder = document.querySelector('#display');
@@ -63,64 +64,82 @@ function getDialog() {
   holder.style.display = "block";
 
   const dialog = document.createElement('div');
-  dialog.className = "dialog-todo";
+  dialog.className = "dialog-notes";
   dialog.innerText = "";
 
   //now to create the dialog
   // first a header
   const header = document.createElement('div');
-  header.className = "todo-tl";
-  header.innerText = "New To-Do";
+  header.className = "notes-tl";
+  header.innerText = "New Note";
   dialog.appendChild(header);
   // then a form?
   const form = document.createElement('div');
-  form.className = "todo-form";
+  form.className = "notes-form";
   form.innerText = "";
+  form.addEventListener("submit",() => newNote());
 
   // then a date selector
+  const titleSec = document.createElement('div');
+  titleSec.className = "notes-dialog-sec";
+  const titleLabel = document.createElement('label');
+  const titleInput = document.createElement('input');
+  titleInput.id = `titleInput${iteration}`;
+
+  titleInput.type = "text";
+  titleLabel.innerText = "Enter a title for your note: ";
+  console.log(titleInput.value);
+
+  titleSec.appendChild(titleLabel);
+  titleSec.appendChild(titleInput);
+  form.appendChild(titleSec);
+
   const dateSec = document.createElement('div');
-  dateSec.className = "todo-dialog-sec";
+  dateSec.className = "notes-dialog-sec";
   const dateLabel = document.createElement('label');
   const dateInput = document.createElement('input');
 
   dateInput.type = "date";
-  dateInput.id = "dateInput";
-  dateLabel.innerText = "Select a due date for your task: ";
+  dateInput.id = `dateInput${iteration}`;
+  dateLabel.innerText = "Select a due date for your note: ";
 
   dateSec.appendChild(dateLabel);
   dateSec.appendChild(dateInput);
   form.appendChild(dateSec);
   // then a title input
-  const titleSec = document.createElement('div');
-  titleSec.className = "todo-dialog-sec";
-  const titleLabel = document.createElement('label');
-  const titleInput = document.createElement('input');
-  titleInput.id = "titleInput";
-
-  titleInput.type = "text";
-  titleLabel.innerText = "Enter a description for your task: ";
-
-  titleSec.appendChild(titleLabel);
-  titleSec.appendChild(titleInput);
-  form.appendChild(titleSec);
-  // then a type input
   const typeSec = document.createElement('div');
-  typeSec.className = "todo-dialog-sec";
+  typeSec.className = "notes-dialog-sec";
   const typeLabel = document.createElement('label');
   const typeInput = document.createElement('input');
-  typeInput.id = "typeInput";
+  typeInput.id = `typeInput${iteration}`;
 
   typeInput.type = "text";
-  typeLabel.innerText = "Enter a type for your task: ";
+  typeLabel.innerText = "Enter a tag for your note: ";
 
   typeSec.appendChild(typeLabel);
   typeSec.appendChild(typeInput);
   form.appendChild(typeSec);
+
+  const bodSec = document.createElement('div');
+  bodSec.className = "notes-dialog-sec";
+  const bodLabel = document.createElement('label');
+  const bodBreak= document.createElement('br');
+
+  const bodInput = document.createElement('textarea');
+  bodInput.id = `bodInput${iteration}`;
+
+  bodLabel.innerText = "Enter the body of your note: ";
+
+  bodSec.appendChild(bodLabel);
+  bodSec.appendChild(bodBreak);
+  bodSec.appendChild(bodInput);
+  form.appendChild(bodSec);
+  
   // then a cancel and submit button
 
   const butSec = document.createElement('div');
-  butSec.className = "todo-dialog-sec";
-  butSec.innerHTML = '<button class="cancel-button" onclick="cancelTask()">Cancel</button> <button class="create-button" onclick="newTodo()">Create</button>';
+  butSec.className = "notes-dialog-sec";
+  butSec.innerHTML = '<button class="cancel-button" onclick="cancelNote()">Cancel</button> <button class="create-button" onclick="newNote()">Create</button>';
   form.appendChild(butSec);
 
   dialog.appendChild(form);
@@ -128,34 +147,35 @@ function getDialog() {
   holder.appendChild(dialog);
 }
 
-function newTodo() {
-
-  const type = document.querySelector('#typeInput');
-  const date = document.querySelector('#dateInput');
-  const desc = document.querySelector('#titleInput');
+function newNote() {
+  let type = document.querySelector(`#typeInput${iteration}`);
+  let date = document.querySelector(`#dateInput${iteration}`);
+  let title = document.querySelector(`#titleInput${iteration}`);
+  let bod = document.querySelector(`#bodInput${iteration}`);
+  console.log(title.value);
   console.log(type.value);
   console.log(date.value);
-  console.log(desc.value);
-  todoDB.push({
-    description: desc.value,
-    dueDate: new Date(date.value),
-    type: type.value,
+  console.log(bod.value);
+  console.log(currId);
+  notesDB.push({
+    title: title.value,
+    tag: type.value,
+    date: new Date(date.value),
+    desc: bod.value,
     id: currId
   });
   currId++;
+  iteration++;
+  title.value = "";
+  bod.value = "";
   const holder = document.querySelector('.overlay');
   holder.style.display = "none";
-  createTodos();
+  createNotes();
 }
 
-function cancelTask() {
+function cancelNote() {
   const holder = document.querySelector('.overlay');
   holder.style.display = "none";
-}
-
-function deleteButton(id) {
-  todoDB = todoDB.filter((entry) => entry.id !== id);
-  createTodos();
 }
 
 createNotes();
