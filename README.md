@@ -50,3 +50,9 @@ const [a,b] = array;
 - From simon JS:
   - localStorage is a great way to keep track of things when not using an actual database
   - strings with replaced variables can be used to create CSS settings in the JS file
+- From startup JS:
+  - modify ```style.display``` to none in order to get ```div```s to disappear
+  - input has a ```type=datetime-local``` option in order to enable selecting times
+  - ```addEventListener``` can be used to add functionality to html tags
+  - using```.className``` can make sure everything is styled correctly
+  - when using ```id``` with a ```querySelector```, it will return the value of the first ```input``` with that id, even if it is no longer in use. 
