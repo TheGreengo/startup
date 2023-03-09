@@ -7,6 +7,8 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
+        <div class="overlay">
+        </div>
         <div class="page-wrap">
             <div class="cont-wrap">
                 <header>
@@ -27,6 +29,7 @@
                     <button class="cal-btn btn w-word" onclick="setType('Month')">Month</button>
                     <button class="cal-btn btn w-word" onclick="setType('Week')">Week</button>
                     <button class="cal-btn btn w-word" onclick="setType('Day')">Day</button>
+                    <button class="cal-btn btn w-word" onclick="getDialog()">Add Event</button>
                 </div>
                 <div class="calendar">
                     <div class="cal-hold" id="cal">

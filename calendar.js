@@ -1,7 +1,17 @@
-let calDB = [];
+let calDB = [
+    {
+        title: "Example",
+        date: new Date("3-15-2023 9:00 pm"),
+        id: 1
+    }
+];
+
 let type = "Month";
 let months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+let currId = 2;
+let iteration = 0;
 
 function getCalDays() {
     thing = new Date();
@@ -155,12 +165,103 @@ function generateCalendar() {
             const Day = document.createElement('div');
             Day.className = "day";
             Day.innerText = (i+1);
+            let thing = new Date();
+            for (let j = 0; j < calDB.length; j++) {
+                if ((calDB[j].date.getMonth() === thing.getMonth()) && (calDB[j].date.getDate() === i)) {
+                    const even = document.createElement('div');
+                    even.className = "event b";
+                    even.innerText = calDB[j].title;
+                    Day.appendChild(even);
+                }
+            }
+
             Weeks.appendChild(Day);
         }
         cal.appendChild(Weeks);
         // populate events
     }
 }
+
+function getDialog() {
+    const holder = document.querySelector('.overlay');
+  
+    holder.style.display = "block";
+  
+    const dialog = document.createElement('div');
+    dialog.className = "dialog-cal";
+    dialog.innerText = "";
+  
+    //now to create the dialog
+    // first a header
+    const header = document.createElement('div');
+    header.className = "week-head";
+    header.innerText = "New Event";
+    dialog.appendChild(header);
+    // then a form?
+    const form = document.createElement('div');
+    form.className = "cal-form";
+    form.innerText = "";
+    form.addEventListener("submit",() => newNote());
+  
+    // then a date selector
+    const titleSec = document.createElement('div');
+    titleSec.className = "cal-dialog-sec";
+    const titleLabel = document.createElement('label');
+    const titleInput = document.createElement('input');
+    titleInput.id = `titleInput${iteration}`;
+  
+    titleInput.type = "text";
+    titleLabel.innerText = "Enter a title for your event: ";
+    console.log(titleInput.value);
+  
+    titleSec.appendChild(titleLabel);
+    titleSec.appendChild(titleInput);
+    form.appendChild(titleSec);
+  
+    const dateSec = document.createElement('div');
+    dateSec.className = "cal-dialog-sec";
+    const dateLabel = document.createElement('label');
+    const dateInput = document.createElement('input');
+  
+    dateInput.type = "datetime-local";
+    dateInput.id = `dateInput${iteration}`;
+    dateLabel.innerText = "Select a date for your event: ";
+  
+    dateSec.appendChild(dateLabel);
+    dateSec.appendChild(dateInput);
+    form.appendChild(dateSec);
+    
+    // then a cancel and submit button
+  
+    const butSec = document.createElement('div');
+    butSec.className = "notes-dialog-sec";
+    butSec.innerHTML = '<button class="cancel-button" onclick="cancelEvent()">Cancel</button> <button class="create-button" onclick="newEvent()">Create</button>';
+    form.appendChild(butSec);
+  
+    dialog.appendChild(form);
+  
+    holder.appendChild(dialog);
+}
+
+function cancelEvent() {
+  const holder = document.querySelector('.overlay');
+  holder.style.display = "none";
+}
+
+function newEvent() {
+    let date = document.querySelector(`#dateInput${iteration}`);
+    let title = document.querySelector(`#titleInput${iteration}`);
+    calDB.push({
+      title: title.value,
+      date: new Date(date.value),
+      id: currId
+    });
+    currId++;
+    iteration++;
+    const holder = document.querySelector('.overlay');
+    holder.style.display = "none";
+    generateCalendar();
+  }
 
 function setType(newType){
     type = newType;

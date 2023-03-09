@@ -516,6 +516,21 @@ menu{
     flex-direction: column;
 }
 
+.dialog-cal{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    border: solid black 3px;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    border: solid #73b70d 2px;
+    max-width: 1080px;
+    border-radius: 5px;
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+}
+
 .overlay {
     display: none;
     position: absolute;
@@ -539,6 +554,12 @@ menu{
 .notes-dialog-sec{
     padding: 10px;
     color: #a855f7;
+    text-align: center;
+}
+
+.cal-dialog-sec{
+    padding: 10px;
+    color: #73b70d;
     text-align: center;
 }
 

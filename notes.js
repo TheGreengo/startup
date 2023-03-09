@@ -166,8 +166,6 @@ function newNote() {
   });
   currId++;
   iteration++;
-  title.value = "";
-  bod.value = "";
   const holder = document.querySelector('.overlay');
   holder.style.display = "none";
   createNotes();
