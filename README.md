@@ -56,3 +56,6 @@ const [a,b] = array;
   - ```addEventListener``` can be used to add functionality to html tags
   - using```.className``` can make sure everything is styled correctly
   - when using ```id``` with a ```querySelector```, it will return the value of the first ```input``` with that id, even if it is no longer in use. 
+- From simon service:
+  - remember to have a index.js file as an entry point for node to modify the project
+  - remember to run `npm init` and then `npm install express` to get node and express included 
