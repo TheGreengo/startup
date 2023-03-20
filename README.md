@@ -59,3 +59,6 @@ const [a,b] = array;
 - From simon service:
   - remember to have a index.js file as an entry point for node to modify the project
   - remember to run `npm init` and then `npm install express` to get node and express included 
+- From simon db:
+  - it's helpful to check that the pm2 services are working if there are server side errors
+  - always double check that the environmental variables are saved in the development environment AND the server separately
