@@ -62,3 +62,6 @@ const [a,b] = array;
 - From simon db:
   - it's helpful to check that the pm2 services are working if there are server side errors
   - always double check that the environmental variables are saved in the development environment AND the server separately
+- From simon login:
+  - remember to import uuid, bcrypt, and cooki-parser services
+  - use pm2 restart after importing packages on server
