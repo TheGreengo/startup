@@ -65,3 +65,6 @@ const [a,b] = array;
 - From simon login:
   - remember to import uuid, bcrypt, and cooki-parser services
   - use pm2 restart after importing packages on server
+- From simon websocket:
+  - if you deploy files to server before installing uuid on your development environment, you'll need to reinstall them in the production environment
+  - the websocket package can be installed using ```npm install ws```
