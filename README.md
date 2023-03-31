@@ -68,3 +68,11 @@ const [a,b] = array;
 - From simon websocket:
   - if you deploy files to server before installing uuid on your development environment, you'll need to reinstall them in the production environment
   - the websocket package can be installed using ```npm install ws```
+- From react reactivity: 
+  - use 
+  ```javascript
+  const onChange = (e) => {
+    updateText(e.target.value);
+  };
+  ```
+  to update when a field is updated
