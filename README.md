@@ -76,3 +76,5 @@ const [a,b] = array;
   };
   ```
   to update when a field is updated
+- From React CLI:
+  - use ```npm run build``` to create production ready version of react app, and then ```serve -s build``` to run it
