@@ -593,3 +593,31 @@ h3{
     height: 100px;
     width:90%;
 }
+
+.log-hold {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.log-field{
+    border: solid #0b7022 2px;
+    width: fit-content;
+    border-radius: 10px;
+    padding:5px;
+    box-shadow: 2.5px 2.5px 15px rgb(184, 184, 184);
+}
+
+.log-entry{
+    margin:5px;
+}
+
+.log-btn {
+    border: solid #0b7022 2px;
+    color: #0b7022;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 16px;
+    box-shadow: 1.5px 1.5px 5px rgb(202, 200, 200);
+}
