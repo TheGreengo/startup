@@ -83,34 +83,40 @@ apiRouter.post('/auth/create', async (req, res) => {
 //  res.send(scores);
 // });
   
-apiRouter.get('/events/:uName', async (_req,res) => {
-  const events = await DB.getEvents(uName);
+apiRouter.get('/events', async (_req,res) => {
+  const events = await DB.getEvents(req.body.user);
   res.send(events);
 });
+
 // apiRouter.post('/score', async (req, res) => {
 //     DB.addScore(req.body);
 //     const scores = await DB.getHighScores();
 //     res.send(scores);
 //   });
+apiRouter.post('/event', async (req, res) => {
+  DB.addEvent(req.body);
+  const events = await DB.getEvents(req.body.user);
+  res.send(events);
+});
 
 app.use(function (err, req, res, next) {
-    res.status(500).send({ type: err.name, message: err.message });
-  });
+  res.status(500).send({ type: err.name, message: err.message });
+});
   
   // Return the application's default page if the path is unknown
-  app.use((_req, res) => {
-    res.sendFile('index.html', { root: 'public' });
-  });
+app.use((_req, res) => {
+  res.sendFile('index.html', { root: 'public' });
+});
   
   // setAuthCookie in the HTTP response
-  function setAuthCookie(res, authToken) {
-    res.cookie(authCookieName, authToken, {
-      secure: true,
-      httpOnly: true,
-      sameSite: 'strict',
-    });
-  }
-  
-  app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+function setAuthCookie(res, authToken) {
+  res.cookie(authCookieName, authToken, {
+    secure: true,
+    httpOnly: true,
+    sameSite: 'strict',
   });
+}
+  
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});

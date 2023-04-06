@@ -68,6 +68,15 @@ function addNote(note) {
 //   return cursor.toArray();
 // }
 
+function getEvents(userName) {
+  const query = {uName: userName};
+  const options = {
+    limit: 100,
+  };
+  const cursor = eventCollection.find(query, options);
+  return cursor.toArray();
+}
+
 module.exports = {
     getUser,
     getUserByToken,

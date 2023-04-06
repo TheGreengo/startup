@@ -20,10 +20,14 @@ function getOffSet(){
 
 async function loadEvents(){
     calDB = [];
+    const userName = await DB.getUserByToken(authToken);
     try {
-        const response = await fetch('/api/events');
-        calDB = response.json();
-        localStorage.setItem('events', JSON.stringify(calDB));
+        const response = await fetch('/api/events',{
+            method: 'GET',
+            body: JSON.stringify({user: userName}),
+        });
+        localStorage.setItem('events', JSON.stringify(response.json()));
+        calDB = localStorage.getItem('events');
     } catch {
         const eventsText = localStorage.getItem('events');
         if (eventsText) {
@@ -33,8 +37,8 @@ async function loadEvents(){
 }
 
 async function addEvent(){
-    const user = await DB.getUserByToken(authToken);
-    if (user) {
+    const userName = await DB.getUserByToken(authToken);
+    if (userName) {
         let date = document.querySelector(`#dateInput${iteration}`);
         let title = document.querySelector(`#titleInput${iteration}`);
         let id = currId;
@@ -43,22 +47,23 @@ async function addEvent(){
             id: uuid.v4(), 
             date: new DataTransfer(date.value), 
             title: title.value,
-            uset: user
+            user: userName
         };
 
         try {
-            const response = await fetch('/api/event/{user}', {
+            const response = await fetch('/api/event', {
               method: 'POST',
               headers: { 'content-type': 'application/json' },
               body: JSON.stringify(newEvent),
             });
       
             // Store what the service gave us as the high scores
-            const scores = await response.json();
-            localStorage.setItem('scores', JSON.stringify(scores));
+            const events = await response.json();
+            localStorage.setItem('events', JSON.stringify(events));
           } catch {
             // If there was an error then just track scores locally
-            this.updateScoresLocal(newEvent);
+            calDB.push(newEvent);
+            localStorage.setItem('events', calDB);
           }
     }
 }
