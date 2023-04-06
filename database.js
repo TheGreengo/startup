@@ -18,20 +18,20 @@ const eventCollection = client.db('organized').collection('event');
 const noteCollection = client.db('organized').collection('note');
 const userCollection = client.db('organized').collection('user');
 
-function getUser(email) {
-    return userCollection.findOne({ email: email });
+function getUser(uName) {
+    return userCollection.findOne({ uName: uName });
   }
   
   function getUserByToken(token) {
     return userCollection.findOne({ token: token });
   }
   
-  async function createUser(email, password) {
+  async function createUser(uName, password) {
     // Hash the password before we insert it into the database
     const passwordHash = await bcrypt.hash(password, 10);
   
     const user = {
-      email: email,
+      uName: uName,
       password: passwordHash,
       token: uuid.v4(),
     };
@@ -47,6 +47,17 @@ function getUser(email) {
 //   scoreCollection.insertOne(score);
 // }
 
+function addTask(task) {
+  taskCollection.insertOne(task);
+}
+
+function addEvent(event) {
+  eventCollection.insertOne(event);
+}
+
+function addNote(note) {
+  noteCollection.insertOne(note);
+}
 // function getHighScores() {
 //   const query = {score: {$gt: 0}};
 //   const options = {

@@ -28,14 +28,15 @@
                             Login or sign up below
                             <div class="log-entry">
                                 <label>Username:</label>
-                                <input>
+                                <input id="userName">
                             </div>
                             <div class="log-entry">
                                 <label>Password:</label>
-                                <input>
+                                <input id="password">
                             </div>
                             <div>
-                                <button class="log-btn">Login</button>
+                                <button onclick="loginUser()" class="log-btn">Login</button>
+                                <button onclick="createUser()" class="log-btn">New User</button>
                             </div>
                         </div>
                     </div>
@@ -45,7 +46,7 @@
                 <div>Created By: Braden Christensen</div>
                 <div>Code available at: <a href="https://github.com/TheGreengo/startup" class="repo-link">TheGreengo</a></div>
             </footer>
-            <script></script>
+            <script src="login.js"></script>
         </div>
     </body>
 </html>
