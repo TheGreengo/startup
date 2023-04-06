@@ -24,6 +24,7 @@
   async function loginOrCreate(endpoint) {
     const userName = document.querySelector('#userName')?.value;
     const password = document.querySelector('#password')?.value;
+    console.log(JSON.stringify({ uName: userName, password: password }))
     const response = await fetch(endpoint, {
       method: 'post',
       body: JSON.stringify({ uName: userName, password: password }),
@@ -37,10 +38,7 @@
       localStorage.setItem('userName', userName);
       window.location.href = 'calendar.html';
     } else {
-      const modalEl = document.querySelector('#msgModal');
-      modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
-      const msgModal = new bootstrap.Modal(modalEl, {});
-      msgModal.show();
+      alert("Error in creating or logging in");
     }
   }
   
