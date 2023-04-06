@@ -83,6 +83,10 @@ apiRouter.post('/auth/create', async (req, res) => {
 //  res.send(scores);
 // });
   
+apiRouter.get('/events/:uName', async (_req,res) => {
+  const events = await DB.getEvents(uName);
+  res.send(events);
+});
 // apiRouter.post('/score', async (req, res) => {
 //     DB.addScore(req.body);
 //     const scores = await DB.getHighScores();

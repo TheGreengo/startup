@@ -1,10 +1,5 @@
-let calDB = [
-    {
-        title: "Example",
-        date: new Date("3-15-2023 9:00 pm"),
-        id: 1
-    }
-];
+const uuid = require('uuid');
+let calDB = [];
 
 let type = "Month";
 let months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -23,7 +18,53 @@ function getOffSet(){
     return new Date(thing.getFullYear(), thing.getMonth()-1,1).getDay();
 }
 
+async function loadEvents(){
+    calDB = [];
+    try {
+        const response = await fetch('/api/events');
+        calDB = response.json();
+        localStorage.setItem('events', JSON.stringify(calDB));
+    } catch {
+        const eventsText = localStorage.getItem('events');
+        if (eventsText) {
+            calDB = JSON.parse(eventsText);
+        }
+    }
+}
+
+async function addEvent(){
+    const user = await DB.getUserByToken(authToken);
+    if (user) {
+        let date = document.querySelector(`#dateInput${iteration}`);
+        let title = document.querySelector(`#titleInput${iteration}`);
+        let id = currId;
+        currId++;
+        const newEvent = {
+            id: uuid.v4(), 
+            date: new DataTransfer(date.value), 
+            title: title.value,
+            uset: user
+        };
+
+        try {
+            const response = await fetch('/api/event/{user}', {
+              method: 'POST',
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify(newEvent),
+            });
+      
+            // Store what the service gave us as the high scores
+            const scores = await response.json();
+            localStorage.setItem('scores', JSON.stringify(scores));
+          } catch {
+            // If there was an error then just track scores locally
+            this.updateScoresLocal(newEvent);
+          }
+    }
+}
+
 function generateCalendar() {
+    loadEvents();
     if (type === "Day") {
         const cal = document.querySelector('#cal');
         cal.innerHTML = "";
@@ -261,7 +302,7 @@ function newEvent() {
     const holder = document.querySelector('.overlay');
     holder.style.display = "none";
     generateCalendar();
-  }
+}
 
 function setType(newType){
     type = newType;
