@@ -20,13 +20,13 @@ const userCollection = client.db('organized').collection('user');
 
 function getUser(uName) {
     return userCollection.findOne({ uName: uName });
-  }
+}
   
-  function getUserByToken(token) {
+function getUserByToken(token) {
     return userCollection.findOne({ token: token });
-  }
+}
   
-  async function createUser(uName, password) {
+async function createUser(uName, password) {
     // Hash the password before we insert it into the database
     const passwordHash = await bcrypt.hash(password, 10);
   
@@ -38,7 +38,7 @@ function getUser(uName) {
     await userCollection.insertOne(user);
   
     return user;
-  }
+}
 
 // TODO: Here's where the functions to set and get stuff
 //       will go
@@ -52,7 +52,13 @@ function addTask(task) {
 }
 
 function addEvent(event) {
-  eventCollection.insertOne(event);
+  const newEvent = {
+    id: uuid.v4(),
+    date: event.date, 
+    title: event.title,
+    user: event.user
+  };
+  eventCollection.insertOne(newEvent);
 }
 
 function addNote(note) {
@@ -69,16 +75,16 @@ function addNote(note) {
 // }
 
 function getEvents(userName) {
-  const query = {uName: userName};
-  const options = {
-    limit: 100,
-  };
-  const cursor = eventCollection.find(query, options);
+  const query = {user: 'fire'};
+  console.log(`Username: ${userName}`);
+  const cursor = eventCollection.find(query);
   return cursor.toArray();
 }
 
 module.exports = {
-    getUser,
-    getUserByToken,
-    createUser
+  addEvent,
+  getEvents,
+  getUser,
+  getUserByToken,
+  createUser
 };

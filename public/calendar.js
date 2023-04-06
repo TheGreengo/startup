@@ -1,4 +1,3 @@
-const uuid = require('uuid');
 let calDB = [];
 
 let type = "Month";
@@ -20,35 +19,37 @@ function getOffSet(){
 
 async function loadEvents(){
     calDB = [];
-    const userName = await DB.getUserByToken(authToken);
+    const userName = localStorage.getItem('userName');
+    console.log("called");
     try {
-        const response = await fetch('/api/events',{
-            method: 'GET',
-            body: JSON.stringify({user: userName}),
-        });
-        localStorage.setItem('events', JSON.stringify(response.json()));
-        calDB = localStorage.getItem('events');
+        const response = await fetch(`/api/events/${userName}`);
+        eventsText = await response.json();
+        console.log(JSON.stringify(eventsText));
+        localStorage.setItem('events', JSON.stringify(eventsText));
+        calDB = localStorage.getItem(JSON.stringify(eventsText));
     } catch {
-        const eventsText = localStorage.getItem('events');
-        if (eventsText) {
-            calDB = JSON.parse(eventsText);
-        }
+        calDB = [];
+        console.log("failed call");
     }
 }
 
-async function addEvent(){
-    const userName = await DB.getUserByToken(authToken);
+async function addEvent() {
+    var count = 0;
+    console.log(count);
+    count++;
+    const userName = localStorage.getItem('userName');
+    console.log(count);
+    count++;
     if (userName) {
         let date = document.querySelector(`#dateInput${iteration}`);
         let title = document.querySelector(`#titleInput${iteration}`);
-        let id = currId;
-        currId++;
         const newEvent = {
-            id: uuid.v4(), 
-            date: new DataTransfer(date.value), 
+            date: new Date(date.value), 
             title: title.value,
             user: userName
         };
+        console.log(count);
+        count++;
 
         try {
             const response = await fetch('/api/event', {
@@ -56,6 +57,8 @@ async function addEvent(){
               headers: { 'content-type': 'application/json' },
               body: JSON.stringify(newEvent),
             });
+            console.log(count);
+            count++;
       
             // Store what the service gave us as the high scores
             const events = await response.json();
@@ -66,10 +69,16 @@ async function addEvent(){
             localStorage.setItem('events', calDB);
           }
     }
+    console.log(count);
+    count++;
+    const holder = document.querySelector('.overlay');
+    holder.style.display = "none";
+    generateCalendar();
 }
 
 function generateCalendar() {
     loadEvents();
+    console.log(`event: ${calDB[0]}`);
     if (type === "Day") {
         const cal = document.querySelector('#cal');
         cal.innerHTML = "";
@@ -247,7 +256,7 @@ function getDialog() {
     const form = document.createElement('div');
     form.className = "cal-form";
     form.innerText = "";
-    form.addEventListener("submit",() => newNote());
+    form.addEventListener("submit",() => addEvent());
   
     // then a date selector
     const titleSec = document.createElement('div');
@@ -258,7 +267,6 @@ function getDialog() {
   
     titleInput.type = "text";
     titleLabel.innerText = "Enter a title for your event: ";
-    console.log(titleInput.value);
   
     titleSec.appendChild(titleLabel);
     titleSec.appendChild(titleInput);
@@ -281,7 +289,7 @@ function getDialog() {
   
     const butSec = document.createElement('div');
     butSec.className = "notes-dialog-sec";
-    butSec.innerHTML = '<button class="cancel-button" onclick="cancelEvent()">Cancel</button> <button class="create-button" onclick="newEvent()">Create</button>';
+    butSec.innerHTML = '<button class="cancel-button" onclick="cancelEvent()">Cancel</button> <button class="create-button" onclick="addEvent()">Create</button>';
     form.appendChild(butSec);
   
     dialog.appendChild(form);

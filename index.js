@@ -62,6 +62,33 @@ apiRouter.post('/auth/create', async (req, res) => {
     }
     res.status(404).send({ msg: 'Unknown' });
   });
+
+  // Here is where the individual routes will go
+// apiRouter.get('/scores', async (_req, res) => {
+//  const scores = await DB.getHighScores();
+//  res.send(scores);
+// });
+  
+apiRouter.get('/events/:uName', async (req,res) => {
+  const events = await DB.getEvents(req.params.uName);
+  if (events) {
+    res.send(events);
+    console.log("Success");
+    return;
+  }
+  res.status(404).send({ msg: 'Unknown' });
+});
+
+// apiRouter.post('/score', async (req, res) => {
+//     DB.addScore(req.body);
+//     const scores = await DB.getHighScores();
+//     res.send(scores);
+//   });
+apiRouter.post('/event', async (req, res) => {
+  DB.addEvent(req.body);
+  const events = await DB.getEvents(req.body.user);
+  res.send(events);
+});
   
   // secureApiRouter verifies credentials for endpoints
   var secureApiRouter = express.Router();
@@ -76,28 +103,6 @@ apiRouter.post('/auth/create', async (req, res) => {
       res.status(401).send({ msg: 'Unauthorized' });
     }
   });
-
-// Here is where the individual routes will go
-// apiRouter.get('/scores', async (_req, res) => {
-//  const scores = await DB.getHighScores();
-//  res.send(scores);
-// });
-  
-apiRouter.get('/events', async (_req,res) => {
-  const events = await DB.getEvents(req.body.user);
-  res.send(events);
-});
-
-// apiRouter.post('/score', async (req, res) => {
-//     DB.addScore(req.body);
-//     const scores = await DB.getHighScores();
-//     res.send(scores);
-//   });
-apiRouter.post('/event', async (req, res) => {
-  DB.addEvent(req.body);
-  const events = await DB.getEvents(req.body.user);
-  res.send(events);
-});
 
 app.use(function (err, req, res, next) {
   res.status(500).send({ type: err.name, message: err.message });
