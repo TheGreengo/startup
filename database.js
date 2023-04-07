@@ -47,11 +47,16 @@ async function createUser(uName, password) {
 //   scoreCollection.insertOne(score);
 // }
 
+function deleteTask(id) {
+  taskCollection.deleteOne({id: id});
+}
+
 function addTask(task) {
   const newTask = {
     id: uuid.v4(),
     date: task.date, 
     title: task.title,
+    type: task.type,
     user: task.user
   };
   taskCollection.insertOne(newTask);
@@ -100,11 +105,20 @@ function getNotes(userName) {
   return cursor.toArray();
 }
 
+function getTasks(userName) {
+  const query = {user: userName};
+  const cursor = taskCollection.find(query);
+  return cursor.toArray();
+}
+
 module.exports = {
   addEvent,
   getEvents,
   addNote,
   getNotes,
+  addTask,
+  getTasks,
+  deleteTask,
   getUser,
   getUserByToken,
   createUser

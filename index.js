@@ -63,6 +63,15 @@ apiRouter.post('/auth/create', async (req, res) => {
     res.status(404).send({ msg: 'Unknown' });
   });
 
+  apiRouter.delete('/deleteTask/:id', async (req, res) => {
+    console.log("got called");
+    const success = await DB.delTask(req.params.id);
+    if (!success) {
+      res.status(404).send({ msg: 'Problems' });
+    } else {
+      res.status(204).end();
+    }
+  });
   // Here is where the individual routes will go
 // apiRouter.get('/scores', async (_req, res) => {
 //  const scores = await DB.getHighScores();
@@ -88,6 +97,16 @@ apiRouter.get('/notes/:uName', async (req,res) => {
   }
   res.status(404).send({ msg: 'Unknown' });
 });
+  
+apiRouter.get('/tasks/:uName', async (req,res) => {
+  const tasks = await DB.getTasks(req.params.uName);
+  if (tasks) {
+    res.send(tasks);
+    console.log("Success");
+    return;
+  }
+  res.status(404).send({ msg: 'Unknown' });
+});
 
 // apiRouter.post('/score', async (req, res) => {
 //     DB.addScore(req.body);
@@ -104,6 +123,13 @@ apiRouter.post('/note', async (req, res) => {
   DB.addNote(req.body);
   const notes = await DB.getNotes(req.body.user);
   res.send(notes);
+});
+  
+
+apiRouter.post('/task', async (req, res) => {
+  DB.addTask(req.body);
+  const tasks = await DB.getTasks(req.body.user);
+  res.send(tasks);
 });
   
   // secureApiRouter verifies credentials for endpoints
