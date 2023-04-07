@@ -62,11 +62,10 @@ async function addEvent() {
             localStorage.setItem('events', calDB);
           }
     }
-    console.log(count);
-    count++;
     const holder = document.querySelector('.overlay');
     holder.style.display = "none";
     loadEvents();
+    broadcastEvent(userName, "creation", "created a new event");
 }
 
 function generateCalendar() {
@@ -299,6 +298,40 @@ function setType(newType){
     type = newType;
     loadEvents();
 }
+
+let socket;
+
+function configureWebSocket() {
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    socket.onopen = (event) => {
+      displayMsg('system', 'calendar', 'connected');
+    };
+    socket.onclose = (event) => {
+      displayMsg('system', 'calendar', 'disconnected');
+    };
+    socket.onmessage = async (event) => {
+      const msg = JSON.parse(await event.data.text());
+      if (msg.type === "creation") {
+        displayMsg('player', msg.from, `scored ${msg.value.score}`);
+      }
+    };
+}
+
+function displayMsg(cls, from, msg) {
+    const chatText = document.querySelector('#chat');
+    chatText.innerHTML =
+      `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
+};
+
+function broadcastEvent(from, type, value) {
+    const event = {
+      from: from,
+      type: type,
+      value: value,
+    };
+    socket.send(JSON.stringify(event));
+};
 /*
 Calendar:
  - add events (on clicking on day) [dialog]
@@ -313,3 +346,4 @@ Calendar:
    depending on what has been selected
 */
 loadEvents();
+configureWebSocket();

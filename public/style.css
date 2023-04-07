@@ -621,3 +621,10 @@ h3{
     font-size: 16px;
     box-shadow: 1.5px 1.5px 5px rgb(202, 200, 200);
 }
+
+.chat-hold {
+    margin: 20px;
+    width: 60%;
+    max-width: 1080px;
+    border: solid #0b7022 2px;
+}
