@@ -36,12 +36,7 @@ async function loadEvents(){
 }
 
 async function addEvent() {
-    var count = 0;
-    console.log(count);
-    count++;
     const userName = localStorage.getItem('userName');
-    console.log(count);
-    count++;
     if (userName) {
         let date = document.querySelector(`#dateInput${iteration}`);
         let title = document.querySelector(`#titleInput${iteration}`);
@@ -50,8 +45,6 @@ async function addEvent() {
             title: title.value,
             user: userName
         };
-        console.log(count);
-        count++;
 
         try {
             const response = await fetch('/api/event', {
@@ -59,8 +52,6 @@ async function addEvent() {
               headers: { 'content-type': 'application/json' },
               body: JSON.stringify(newEvent),
             });
-            console.log(count);
-            count++;
       
             // Store what the service gave us as the high scores
             const events = await response.json();

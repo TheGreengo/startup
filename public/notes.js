@@ -1,18 +1,63 @@
-let notesDB = [
-  {
-    title: "Example Note",
-    tag: "Type 1",
-    date: new Date("3-14-2023"),
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut" +
-    " enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in" + 
-    " reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt " +
-    "in culpa qui officia deserunt mollit anim id est laborum.",
-    id: 1
-  }
-];
+let notesDB = [];
 
 let currId = 2;
 let iteration = 0;
+
+async function loadNotes() {
+  notesDB = [];
+    const userName = localStorage.getItem('userName');
+    console.log("called");
+    try {
+        const response = await fetch(`/api/notes/${userName}`);
+        notesText = await response.json();
+        console.log(JSON.stringify(notesText));
+        localStorage.setItem('notes', JSON.stringify(notesText));
+    } catch {
+      notesDB = [];
+        console.log("failed call");
+    }
+    notesDB = localStorage.getItem('notes');
+    createNotes();
+}
+
+async function addNote() {
+  const userName = localStorage.getItem('userName');
+  
+  if (userName) {
+    let type = document.querySelector(`#typeInput${iteration}`);
+    let date = document.querySelector(`#dateInput${iteration}`);
+    let title = document.querySelector(`#titleInput${iteration}`);
+    let bod = document.querySelector(`#bodInput${iteration}`);
+      const newNote = {
+          date: new Date(date.value), 
+          type: type.value,
+          title: title.value,
+          bod: bod.value,
+          user: userName
+      };
+
+      try {
+          const response = await fetch('/api/note', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(newNote),
+          });
+    
+          // Store what the service gave us as the high scores
+          const notes = await response.json();
+          localStorage.setItem('notes', JSON.stringify(notes));
+        } catch {
+          // If there was an error then just track scores locally
+          calDB.push(newNote);
+          localStorage.setItem('notes', notesDB);
+        }
+  }
+  console.log(count);
+  count++;
+  const holder = document.querySelector('.overlay');
+  holder.style.display = "none";
+  createNotes();
+}
 
 function createNotes() {
   const holder = document.querySelector('#display');
@@ -139,7 +184,7 @@ function getDialog() {
 
   const butSec = document.createElement('div');
   butSec.className = "notes-dialog-sec";
-  butSec.innerHTML = '<button class="cancel-button" onclick="cancelNote()">Cancel</button> <button class="create-button" onclick="newNote()">Create</button>';
+  butSec.innerHTML = '<button class="cancel-button" onclick="cancelNote()">Cancel</button> <button class="create-button" onclick="addNote()">Create</button>';
   form.appendChild(butSec);
 
   dialog.appendChild(form);
@@ -176,7 +221,7 @@ function cancelNote() {
   holder.style.display = "none";
 }
 
-createNotes();
+loadNotes();
 
 /*
 Notes:

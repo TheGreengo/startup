@@ -48,7 +48,13 @@ async function createUser(uName, password) {
 // }
 
 function addTask(task) {
-  taskCollection.insertOne(task);
+  const newTask = {
+    id: uuid.v4(),
+    date: task.date, 
+    title: task.title,
+    user: task.user
+  };
+  taskCollection.insertOne(newTask);
 }
 
 function addEvent(event) {
@@ -62,7 +68,15 @@ function addEvent(event) {
 }
 
 function addNote(note) {
-  noteCollection.insertOne(note);
+  const newNote = {
+    id: uuid.v4(),
+    date: note.date, 
+    title: note.title,
+    type: note.type,
+    body: note.body,
+    user: note.user
+  };
+  noteCollection.insertOne(newNote);
 }
 // function getHighScores() {
 //   const query = {score: {$gt: 0}};
@@ -75,15 +89,22 @@ function addNote(note) {
 // }
 
 function getEvents(userName) {
-  const query = {user: 'fire'};
-  console.log(`Username: ${userName}`);
+  const query = {user: userName};
   const cursor = eventCollection.find(query);
+  return cursor.toArray();
+}
+
+function getNotes(userName) {
+  const query = {user: userName};
+  const cursor = noteCollection.find(query);
   return cursor.toArray();
 }
 
 module.exports = {
   addEvent,
   getEvents,
+  addNote,
+  getNotes,
   getUser,
   getUserByToken,
   createUser

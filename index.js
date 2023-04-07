@@ -78,6 +78,16 @@ apiRouter.get('/events/:uName', async (req,res) => {
   }
   res.status(404).send({ msg: 'Unknown' });
 });
+  
+apiRouter.get('/notes/:uName', async (req,res) => {
+  const notes = await DB.getNotes(req.params.uName);
+  if (notes) {
+    res.send(notes);
+    console.log("Success");
+    return;
+  }
+  res.status(404).send({ msg: 'Unknown' });
+});
 
 // apiRouter.post('/score', async (req, res) => {
 //     DB.addScore(req.body);
@@ -88,6 +98,12 @@ apiRouter.post('/event', async (req, res) => {
   DB.addEvent(req.body);
   const events = await DB.getEvents(req.body.user);
   res.send(events);
+});
+
+apiRouter.post('/note', async (req, res) => {
+  DB.addNote(req.body);
+  const notes = await DB.getNotes(req.body.user);
+  res.send(notes);
 });
   
   // secureApiRouter verifies credentials for endpoints
