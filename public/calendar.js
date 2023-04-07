@@ -14,7 +14,8 @@ function getCalDays() {
 
 function getOffSet(){
     thing = new Date();
-    return new Date(thing.getFullYear(), thing.getMonth()-1,1).getDay();
+    thing = new Date(thing.getFullYear(), thing.getMonth(),1).getDay();
+    return thing;
 }
 
 async function loadEvents(){
@@ -26,11 +27,12 @@ async function loadEvents(){
         eventsText = await response.json();
         console.log(JSON.stringify(eventsText));
         localStorage.setItem('events', JSON.stringify(eventsText));
-        calDB = localStorage.getItem(JSON.stringify(eventsText));
     } catch {
         calDB = [];
         console.log("failed call");
     }
+    calDB = localStorage.getItem('events');
+    generateCalendar();
 }
 
 async function addEvent() {
@@ -73,12 +75,11 @@ async function addEvent() {
     count++;
     const holder = document.querySelector('.overlay');
     holder.style.display = "none";
-    generateCalendar();
+    loadEvents();
 }
 
 function generateCalendar() {
-    loadEvents();
-    console.log(`event: ${calDB[0]}`);
+    calDB = JSON.parse(localStorage.getItem('events'));
     if (type === "Day") {
         const cal = document.querySelector('#cal');
         cal.innerHTML = "";
@@ -205,6 +206,7 @@ function generateCalendar() {
 
         let numDays = getCalDays();
         let off = getOffSet() - 1;
+        console.log(off);
 
         const Weeks = document.createElement('div');
         Weeks.className = "weeks";
@@ -222,14 +224,14 @@ function generateCalendar() {
             Day.innerText = (i+1);
             let thing = new Date();
             for (let j = 0; j < calDB.length; j++) {
-                if ((calDB[j].date.getMonth() === thing.getMonth()) && (calDB[j].date.getDate() === i)) {
+                testDate = new Date(calDB[j].date);
+                if ((testDate.getMonth() === thing.getMonth()) && (testDate.getDate() === i)) {
                     const even = document.createElement('div');
                     even.className = "event b";
                     even.innerText = calDB[j].title;
                     Day.appendChild(even);
                 }
             }
-
             Weeks.appendChild(Day);
         }
         cal.appendChild(Weeks);
@@ -302,24 +304,9 @@ function cancelEvent() {
   holder.style.display = "none";
 }
 
-function newEvent() {
-    let date = document.querySelector(`#dateInput${iteration}`);
-    let title = document.querySelector(`#titleInput${iteration}`);
-    calDB.push({
-      title: title.value,
-      date: new Date(date.value),
-      id: currId
-    });
-    currId++;
-    iteration++;
-    const holder = document.querySelector('.overlay');
-    holder.style.display = "none";
-    generateCalendar();
-}
-
 function setType(newType){
     type = newType;
-    generateCalendar();
+    loadEvents();
 }
 /*
 Calendar:
@@ -334,5 +321,4 @@ Calendar:
  - get a function to create the daily/weekly/monthly calendars
    depending on what has been selected
 */
-
-generateCalendar();
+loadEvents();
