@@ -6,15 +6,13 @@ let iteration = 0;
 async function loadNotes() {
   notesDB = [];
     const userName = localStorage.getItem('userName');
-    console.log("called");
     try {
-        const response = await fetch(`/api/notes/${userName}`);
-        notesText = await response.json();
-        console.log(JSON.stringify(notesText));
-        localStorage.setItem('notes', JSON.stringify(notesText));
+      const response = await fetch(`/api/notes/${userName}`);
+      notesText = await response.json();
+      localStorage.setItem('notes', JSON.stringify(notesText));
     } catch {
       notesDB = [];
-        console.log("failed call");
+      console.log("failed call");
     }
     notesDB = localStorage.getItem('notes');
     createNotes();
@@ -32,7 +30,7 @@ async function addNote() {
           date: new Date(date.value), 
           type: type.value,
           title: title.value,
-          bod: bod.value,
+          body: bod.value,
           user: userName
       };
 
@@ -52,54 +50,56 @@ async function addNote() {
           localStorage.setItem('notes', notesDB);
         }
   }
-  console.log(count);
-  count++;
   const holder = document.querySelector('.overlay');
   holder.style.display = "none";
-  createNotes();
+  loadNotes();
 }
 
 function createNotes() {
+  notesDB = JSON.parse(localStorage.getItem('notes'));
   const holder = document.querySelector('#display');
   holder.innerHTML = "";
 
+  console.log(`Length: ${notesDB.length}`);
+  console.log(notesDB);
   if (notesDB.length === 0) {
     holder.innerHTML = '<h3>No notes to display</h3>';
   }
-
-  for (let i = 0; i < notesDB.length; i++) {
-    const newNote = document.createElement('div');
-    const head = document.createElement('div');
-    head.className = "note-head";
-    const title = document.createElement('div');
-    title.innerText = `Title: ${notesDB[i].title}`;
-    const tag = document.createElement('div');
-    tag.innerText = `Tag: ${notesDB[i].tag}`;
-    const date = document.createElement('div');
-    console.log(notesDB[i].date);
-    date.innerText = `Date: ${notesDB[i].date.getMonth()+1}-${notesDB[i].date.getDate()}-${notesDB[i].date.getFullYear() - 2000}`;
-
-    head.appendChild(title);
-    head.appendChild(tag);
-    head.appendChild(date);
-
-    const delBtn = document.createElement('button');
-    delBtn.textContent = `Delete`;
-    delBtn.className = "note-btn";
-    delBtn.onclick = function() {
-      notesDB = notesDB.filter((entry) => entry.id !== notesDB[i].id);
-      createNotes();
-    };
-    head.appendChild(delBtn);
-
-    newNote.appendChild(head);
-
-    const bod = document.createElement('div');
-    bod.className = "note-body";
-    bod.innerText = notesDB[i].desc;
-    newNote.appendChild(bod);
-
-    holder.appendChild(newNote);
+  else {
+    for (let i = 0; i < notesDB.length; i++) {
+      const newNote = document.createElement('div');
+      const head = document.createElement('div');
+      head.className = "note-head";
+      const title = document.createElement('div');
+      title.innerText = `Title: ${notesDB[i].title}`;
+      const tag = document.createElement('div');
+      tag.innerText = `Tag: ${notesDB[i].type}`;
+      const date = document.createElement('div');
+      const tempDate = new Date(notesDB[i].date);
+      date.innerText = `Date: ${tempDate.getMonth()+1}-${tempDate.getDate()}-${tempDate.getFullYear() - 2000}`;
+  
+      head.appendChild(title);
+      head.appendChild(tag);
+      head.appendChild(date);
+  
+      const delBtn = document.createElement('button');
+      delBtn.textContent = `Delete`;
+      delBtn.className = "note-btn";
+      delBtn.onclick = function() {
+        notesDB = notesDB.filter((entry) => entry.id !== notesDB[i].id);
+        createNotes();
+      };
+      head.appendChild(delBtn);
+  
+      newNote.appendChild(head);
+  
+      const bod = document.createElement('div');
+      bod.className = "note-body";
+      bod.innerText = notesDB[i].body;
+      newNote.appendChild(bod);
+  
+      holder.appendChild(newNote);
+    }
   }
 }
 
@@ -133,7 +133,6 @@ function getDialog() {
 
   titleInput.type = "text";
   titleLabel.innerText = "Enter a title for your note: ";
-  console.log(titleInput.value);
 
   titleSec.appendChild(titleLabel);
   titleSec.appendChild(titleInput);
@@ -190,30 +189,6 @@ function getDialog() {
   dialog.appendChild(form);
 
   holder.appendChild(dialog);
-}
-
-function newNote() {
-  let type = document.querySelector(`#typeInput${iteration}`);
-  let date = document.querySelector(`#dateInput${iteration}`);
-  let title = document.querySelector(`#titleInput${iteration}`);
-  let bod = document.querySelector(`#bodInput${iteration}`);
-  console.log(title.value);
-  console.log(type.value);
-  console.log(date.value);
-  console.log(bod.value);
-  console.log(currId);
-  notesDB.push({
-    title: title.value,
-    tag: type.value,
-    date: new Date(date.value),
-    desc: bod.value,
-    id: currId
-  });
-  currId++;
-  iteration++;
-  const holder = document.querySelector('.overlay');
-  holder.style.display = "none";
-  createNotes();
 }
 
 function cancelNote() {
