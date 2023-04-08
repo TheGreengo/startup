@@ -18,7 +18,7 @@ optimized, unlocking your true productive potential!
 ### Calendar (shown below)
 - gives users an overview of which tasks are due when
 - allows for easy moving/rescheduling tasks
-![calendar sketch](https://github.com/TheGreengo/startup/blob/main/calendar_sketch.jpeg)
+![calendar sketch](https://github.com/TheGreengo/startup/pictures/calendar_sketch.jpeg)
 
 ### Notes (shown below)
 - notes can be created for different task tag groups or tag groups of their own (i.e if you have a chemistry class a "Chem 101" tag could be used so that you can view just the notes that you've taken for chemistry)
@@ -83,3 +83,6 @@ const [a,b] = array;
 - From Simon-React:
   - reinstall create-react-app to ensure proper build
   - make sure to set up .env.local file
+- From startup-web service
+  - make sure all imports are taken care of and DOUBLE CHECK FILE AND IMPORT NAMES
+  - define html spaces ahead of time for any websocket notifications to be shown
