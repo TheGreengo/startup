@@ -80,3 +80,6 @@ const [a,b] = array;
   - use ```npm run build``` to create production ready version of react app, and then ```serve -s build``` to run it
 - From React Router:
   - react-router and react-router-dom
+- From Simon-React:
+  - reinstall create-react-app to ensure proper build
+  - make sure to set up .env.local file
